@@ -1,0 +1,93 @@
+html,
+body {
+  height: 100%;
+}
+
+.logo {
+  max-width: 70px;
+}
+
+.btn-custom {
+  background: linear-gradient(169deg, #e40015, #750075);
+  color: #fefefe;
+  border: 0.125rem solid #f50;
+}
+
+.custom-transition {
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-custom:hover {
+  background: #f50;
+  color: #fefefe;
+  border: 0.125rem solid transparent;
+}
+
+.btn-outline-custom {
+  color: #1c1646;
+  border: 0.125rem solid #1c1646;
+}
+
+.btn-outline-custom:hover {
+  border: 0.125rem solid #f50;
+  color: #fefefe;
+  background: linear-gradient(169deg, #e40015, #750075);
+}
+
+.bg-dark-custom {
+  background-color: #1c1646;
+}
+
+.bg-gradient-custom {
+  background: linear-gradient(169deg, #e40015, #750075);
+}
+
+.text-custom-dark {
+  color: #1d193b;
+}
+
+.brand {
+  text-decoration: none;
+}
+
+.rank {
+  padding: 3px 5px 3px 8px;
+  border-radius: 3px;
+}
+
+.first-rank {
+  background-color: gold;
+
+  text-shadow: 2px 2px 8px #d28c47;
+}
+
+.second-rank,
+.third-rank {
+  text-shadow: 2px 2px 8px #263238;
+}
+
+.second-rank {
+  background-color: #e0e0e0;
+}
+
+.third-rank {
+  background-color: #d28c47;
+}
+
+.border-custom {
+  border: 1px solid #1d193b;
+}
+
+.border-custom-lg {
+  border: 2px solid #1d193b;
+}
+
+.border-bottom-custom-lg {
+  border-bottom: 2px solid #1d193b;
+}
+
+.answer {
+  border: 0.125rem solid #1d193b;
+  color: #fefefe;
+  background: #1d193b;
+}
