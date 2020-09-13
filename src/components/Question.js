@@ -36,12 +36,12 @@ const Question = ({ question, checkAnswer, answers, questionNumber }) => {
             </Button>
           </div>
 
-          {/* <div className="d-flex align-items-center mb-3">
+          {question && question.image && <div className="d-flex align-items-center mb-3">
             <Image
-              src="https://picsum.photos/300/200"
+              src={question.image}
               className="rounded"
             ></Image>
-          </div> */}
+          </div>}
 
           <div className="pt-3 ">
             {answers.map((answer) => (
