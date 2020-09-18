@@ -20,10 +20,10 @@ const Question = ({ question, checkAnswer, answers, questionNumber }) => {
           <Card.Title className="mb-4">
             <h3>{question.question}</h3>
           </Card.Title>
-          <div className="d-flex align-items-center mb-3 flex-column">
+          {question && question.description && <div className="d-flex align-items-center mb-3 flex-column">
             <ReactPlayer
               style={{ pointerEvents: 'none' }}
-              url="https://www.youtube.com/watch?v=Zzn9-ATB9aU"
+              url={question.description}
               playing={playing}
             />
 
@@ -34,7 +34,7 @@ const Question = ({ question, checkAnswer, answers, questionNumber }) => {
             >
               Play video
             </Button>
-          </div>
+          </div>}
 
           {question && question.image && <div className="d-flex align-items-center mb-3">
             <Image
