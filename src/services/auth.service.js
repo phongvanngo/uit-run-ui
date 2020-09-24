@@ -27,18 +27,18 @@ function logout() {
 
 export function handleResponse(response) {
   return response.text().then((text) => {
-    const data = text && JSON.parse(text)
     if (!response.ok) {
-      if (response.status === 401) {
-        // auto logout if 401 response returned from api
+      if (response.status === 401 || response.status === 403) {
+        // auto logout if 401 or 403 response returned from api
         logout()
-        window.location.reload(true)
+        window.location.reload()
       }
-
-      const error = (data && data.message) || response.statusText
+      
+      const error = response.statusText
       return Promise.reject(error)
     }
-
+    
+    const data = text && JSON.parse(text)
     return data
   })
 }
