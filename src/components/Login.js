@@ -32,7 +32,7 @@ const Login = () => {
           }
         })
         .catch(() => {
-          history.push('/')
+          userService.logout()
         })
     }
   }
