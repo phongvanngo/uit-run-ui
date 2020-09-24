@@ -32,7 +32,7 @@ const Login = () => {
           }
         })
         .catch(() => {
-          userService.logout()
+          authActions.logout()
         })
     }
   }
