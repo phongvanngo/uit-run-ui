@@ -9,7 +9,7 @@ function getBoard() {
     method: 'GET',
   }
 
-  return fetch('http://localhost:3000/api/v1/score', requestOptions).then(
+  return fetch('https://uitrun-test.herokuapp.com/api/v1/score', requestOptions).then(
     handleResponse
   )
 }

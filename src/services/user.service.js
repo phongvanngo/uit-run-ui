@@ -7,7 +7,7 @@ function getUserInfo() {
     headers: authHeader(),
   }
 
-  return fetch('http://localhost:3000/api/v1/user/me', requestOptions).then(
+  return fetch('https://uitrun-test.herokuapp.com/api/v1/user/me', requestOptions).then(
     handleResponse
   )
 }
@@ -20,7 +20,7 @@ function updateUserInfo(fullName, stdId) {
   }
 
   return fetch(
-    'http://localhost:3000/api/v1/user/update-first-login',
+    'https://uitrun-test.herokuapp.com/api/v1/user/update-first-login',
     requestOptions
   ).then(handleResponse)
 }
