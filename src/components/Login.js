@@ -24,7 +24,6 @@ const Login = () => {
     if (userCode) {
       dispatch(authActions.login(userCode))
         .then(() => userService.getUserInfo())
-        .then(handleResponse)
         .then((userInfo) => {
           if (!userInfo.fullName && !userInfo.stdId) {
             history.push('/info-form')
