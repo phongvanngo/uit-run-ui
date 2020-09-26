@@ -26,6 +26,7 @@ function logout() {
 }
 
 export function handleResponse(response) {
+  console.log(response)
   return response.text().then((text) => {
     if (!response.ok) {
       if (response.status === 401 || response.status === 403) {

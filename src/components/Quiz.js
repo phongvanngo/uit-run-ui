@@ -7,7 +7,7 @@ import { useCountdown } from '../hooks/useCountdown'
 import ModalInstruction from './ModalInstruction'
 import { secondToMinutesAndSeconds } from '../utils'
 
-const TOTAL_QUESTIONS = 25
+const TOTAL_QUESTIONS = 20
 
 function Quiz() {
   const [loading, setLoading] = useState(false)

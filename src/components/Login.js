@@ -5,7 +5,6 @@ import { Container, Form, Button, Card, Spinner } from 'react-bootstrap'
 
 import { authActions } from '../store/actions/authActions'
 import { userService } from '../services/user.service'
-import { handleResponse } from '../services/auth.service'
 const Login = () => {
   const loggingIn = useSelector((state) => state.authentication.loggingIn)
   const dispatch = useDispatch()
