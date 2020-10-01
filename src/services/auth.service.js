@@ -28,8 +28,8 @@ function logout() {
 export function handleResponse(response) {
   return response.text().then((text) => {
     if (!response.ok) {
-      if (response.status === 401 || response.status === 403) {
-        // auto logout if 401 or 403 response returned from api
+      if (response.status === 401) {
+        // auto logout if 401
         logout()
         window.location.reload()
       }
