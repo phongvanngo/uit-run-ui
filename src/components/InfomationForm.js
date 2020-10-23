@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Container, Form, Button, Card, Spinner } from 'react-bootstrap'
 import { userService } from '../services/user.service'
-import { useHistory } from 'react-router-dom'
+import { Prompt, useHistory } from 'react-router-dom'
 
 const InfomationForm = () => {
+  const [numberPhone, setNumberPhone] = useState('')
   const [stdId, setStdId] = useState('')
   const [fullName, setFullName] = useState('')
   const [loading, setLoading] = useState(false)
@@ -11,6 +12,16 @@ const InfomationForm = () => {
   const history = useHistory()
   const [submitted, setSubmitted] = useState(false)
   const [stdIdLenError, setStdIdLenError] = useState(false)
+  const [formIsNotFilled, setformIsNotFilled] = useState(true)
+
+  useEffect(() => {
+    if (stdId && fullName && numberPhone) {
+      setformIsNotFilled(false)
+    }
+    else {
+      setformIsNotFilled(true)
+    }
+  },[stdId, fullName, numberPhone])
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -24,7 +35,7 @@ const InfomationForm = () => {
         setLoading(true)
         setError(false)
         userService
-          .updateUserInfo(fullName, stdId)
+          .updateUserInfo(fullName, stdId, numberPhone)
           .then(() => history.push('/'))
           .catch(() => {
             setError(true)
@@ -36,6 +47,10 @@ const InfomationForm = () => {
 
   return (
     <Container>
+      <Prompt
+      when={formIsNotFilled}
+      message={`Vui lòng điền đầy đủ thông tin trước khi rời trang. Bạn có muốn tiếp tục rời trang?(Cancel để ở lại)`}
+      />
       {loading && (
         <div className="d-flex justify-content-center mb-3">
           <Spinner animation="border" role="status">
@@ -74,6 +89,19 @@ const InfomationForm = () => {
               />
               {submitted && !fullName && (
                 <small className="text-danger">Cần nhập họ và tên</small>
+              )}
+            </Form.Group>
+            <Form.Group controlId="formName">
+              <Form.Label>Số điện thoại</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Nhập số điện thoại"
+                className="border-custom-lg"
+                value={numberPhone}
+                onChange={(e) => setNumberPhone(e.target.value)}
+              />
+              {submitted && !numberPhone && (
+                <small className="text-danger">Cần nhập số điện thoại</small>
               )}
             </Form.Group>
 

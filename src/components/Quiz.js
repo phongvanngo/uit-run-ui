@@ -6,6 +6,7 @@ import Question from './Question'
 import { useCountdown } from '../hooks/useCountdown'
 import ModalInstruction from './ModalInstruction'
 import { secondToMinutesAndSeconds } from '../utils'
+import { Prompt } from 'react-router-dom'
 
 const TOTAL_QUESTIONS = 20
 
@@ -85,7 +86,12 @@ function Quiz() {
   }
 
   return (
+    
     <Container className="d-flex flex-column align-items-center">
+      <Prompt
+      when={!gameOver}
+      message={location => `Vui lòng hoàn thành phần thi trước khi rời trang. Bạn có muốn tiếp tục rời trang?(Cancel để ở lại)`}
+      />
       <h1>Thi Đấu</h1>
       {loading && (
         <Spinner animation="border" role="status">

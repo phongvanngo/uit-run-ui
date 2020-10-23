@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom'
 const Home = () => {
   const [user, setUser] = useState(() => {
     let userData = JSON.parse(localStorage.getItem('user'))
-    console.log(userData)
     if (userData && userData.user) {
       return userData.user.fullName
     } else {

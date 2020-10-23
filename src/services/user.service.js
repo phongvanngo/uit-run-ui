@@ -12,11 +12,11 @@ function getUserInfo() {
   )
 }
 
-function updateUserInfo(fullName, stdId) {
+function updateUserInfo(fullName, stdId, numberPhone) {
   const requestOptions = {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json', ...authHeader() },
-    body: JSON.stringify({ fullName, stdId }),
+    body: JSON.stringify({ fullName, stdId, numberPhone }),
   }
     return fetch(
       'https://uitrun-test.herokuapp.com/api/v1/user/update-first-login',
