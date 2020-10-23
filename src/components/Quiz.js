@@ -86,7 +86,7 @@ function Quiz() {
 
   return (
     <Container className="d-flex flex-column align-items-center">
-      <h1>Quiz Demo</h1>
+      <h1>Thi Đấu</h1>
       {loading && (
         <Spinner animation="border" role="status">
           <span className="sr-only">Đang tải...</span>

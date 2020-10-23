@@ -59,7 +59,7 @@ const RankingBoard = () => {
           <Table bordered hover className="text-center">
             <thead className="bg-gradient-custom text-white">
               <tr>
-                <th>#</th>
+                <th>Hạng</th>
                 <th>MSSV</th>
                 <th>Điểm</th>
                 <th>Thời gian</th>
