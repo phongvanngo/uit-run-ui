@@ -18,11 +18,10 @@ function updateUserInfo(fullName, stdId) {
     headers: { 'Content-Type': 'application/json', ...authHeader() },
     body: JSON.stringify({ fullName, stdId }),
   }
-
-  return fetch(
-    'https://uitrun-test.herokuapp.com/api/v1/user/update-first-login',
-    requestOptions
-  ).then(handleResponse)
+    return fetch(
+      'https://uitrun-test.herokuapp.com/api/v1/user/update-first-login',
+      requestOptions
+    ).then(handleResponse)
 }
 
 export const userService = {

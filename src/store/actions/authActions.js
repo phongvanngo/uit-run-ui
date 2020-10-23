@@ -13,9 +13,11 @@ function login(userCode) {
     return authService.login(userCode).then(
       (user) => {
         dispatch(success(user))
+        return user
       },
       (error) => {
         dispatch(failure(error.toString()))
+        return Promise.reject(error)
       }
     )
   }

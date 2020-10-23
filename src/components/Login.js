@@ -5,12 +5,14 @@ import { Container, Form, Button, Card, Spinner } from 'react-bootstrap'
 
 import { authActions } from '../store/actions/authActions'
 import { userService } from '../services/user.service'
+import { userCodes } from '../utils'
 const Login = () => {
   const loggingIn = useSelector((state) => state.authentication.loggingIn)
   const dispatch = useDispatch()
   const [userCode, setUserCode] = useState('')
   const [submitted, setSubmitted] = useState(false)
   const history = useHistory()
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     dispatch(authActions.logout())
@@ -22,13 +24,18 @@ const Login = () => {
 
     if (userCode) {
       dispatch(authActions.login(userCode))
-        .then(() => userService.getUserInfo())
+        .then(() => {
+          setError(false)
+          return userService.getUserInfo()
+        })
         .then((userInfo) => {
           if (!userInfo.fullName && !userInfo.stdId) {
             history.push('/info-form')
           } else {
             history.push('/')
           }
+        }).catch(error => {
+          setError(true)
         })
     }
   }
@@ -48,7 +55,14 @@ const Login = () => {
                 className="border-custom-lg"
               />
               {submitted && !userCode && (
-                <small className="text-danger mt-4">Cần nhập code</small>
+                <div>
+                  <small className="text-danger mt-4">Cần nhập code</small>
+                </div>
+              )}
+              {submitted && error && (
+                <div>
+                  <small className="text-danger mt-4">Sai mã code hoặc code không tồn tại</small>
+                </div>
               )}
             </Form.Group>
             <Button
