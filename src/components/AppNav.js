@@ -31,7 +31,7 @@ const AppNav = () => {
           </NavLink>
           {user && (
             <NavLink activeClassName="active" className="nav-link" to="/quiz">
-              Trắc nghiệm
+              Thi Đấu
             </NavLink>
           )}
         </Nav>

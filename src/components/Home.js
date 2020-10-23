@@ -6,9 +6,9 @@ import { Link } from 'react-router-dom'
 const Home = () => {
   return (
     <Jumbotron className="rounded bg-dark-custom text-white text-center">
-      <h1 className="font-italic">UIT Run</h1>
+      <h1>Chào mừng bạn đến với UIT RUN</h1>
       <p className="lead">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      Bạn đã sẵn sàng đến với bài kiểm tra trí tuệ chưa?
       </p>
       <div>
         <Link className="btn btn-custom custom-transition mr-2" to="/quiz">
@@ -16,7 +16,7 @@ const Home = () => {
         </Link>
         <a
           className="btn btn-custom custom-transition"
-          href="https://google.com"
+          href="https://uitrun.com/"
         >
           Tìm hiểu thêm
         </a>
