@@ -74,7 +74,7 @@ const RankingBoard = () => {
                   return true
                 })
                 .map((user) => (
-                  <tr key={user.std_id}>
+                  <tr key={user.std_id+user.rank}>
                     <td className="w-auto font-weight-bold font-italic">
                       <span
                         className={

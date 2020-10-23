@@ -10,21 +10,27 @@ const InfomationForm = () => {
   const [error, setError] = useState(false)
   const history = useHistory()
   const [submitted, setSubmitted] = useState(false)
+  const [stdIdLenError, setStdIdLenError] = useState(false)
 
   const handleSubmit = (e) => {
     e.preventDefault()
     setSubmitted(true)
 
     if (fullName && stdId) {
-      setLoading(true)
-      setError(false)
-      userService
-        .updateUserInfo(fullName, stdId)
-        .then(() => history.push('/'))
-        .catch(() => {
-          setError(true)
-          setLoading(false)
-        })
+      if (stdId.length !== 8) {
+        setStdIdLenError(true)
+      }
+      else {
+        setLoading(true)
+        setError(false)
+        userService
+          .updateUserInfo(fullName, stdId)
+          .then(() => history.push('/'))
+          .catch(() => {
+            setError(true)
+            setLoading(false)
+          })
+      }
     }
   }
 
@@ -51,6 +57,9 @@ const InfomationForm = () => {
               />
               {submitted && !stdId && (
                 <small className="text-danger">Cần nhập MSSV</small>
+              )}
+              {submitted && stdIdLenError && (
+                <small className="text-danger">MSSV có độ dài không hợp lệ</small>
               )}
             </Form.Group>
 
