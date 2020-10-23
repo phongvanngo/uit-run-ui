@@ -44,9 +44,9 @@ const Question = ({ question, checkAnswer, answers, questionNumber }) => {
           </div>}
 
           <div className="pt-3 ">
-            {answers.map((answer) => (
+            {answers.map((answer,i) => (
               <div
-                key={answer}
+                key={answer + i}
                 className="mb-2 "
                 onClick={() => setUserAnswer(answer)}
               >
