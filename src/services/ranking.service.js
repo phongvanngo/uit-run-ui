@@ -9,7 +9,7 @@ function getBoard() {
     method: 'GET',
   }
 
-  return fetch('https://uitrun-test.herokuapp.com/api/v1/score', requestOptions).then(
+  return fetch(`${process.env.REACT_APP_API_URL}/score`, requestOptions).then(
     handleResponse
   )
 }

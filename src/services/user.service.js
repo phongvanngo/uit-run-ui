@@ -7,7 +7,7 @@ function getUserInfo() {
     headers: authHeader(),
   }
 
-  return fetch('https://uitrun-test.herokuapp.com/api/v1/user/me', requestOptions).then(
+  return fetch(`${process.env.REACT_APP_API_URL}/user/me`, requestOptions).then(
     handleResponse
   )
 }
@@ -19,7 +19,7 @@ function updateUserInfo(fullName, stdId, numberPhone) {
     body: JSON.stringify({ fullName, stdId, numberPhone }),
   }
     return fetch(
-      'https://uitrun-test.herokuapp.com/api/v1/user/update-first-login',
+      `${process.env.REACT_APP_API_URL}/user/update-first-login`,
       requestOptions
     ).then(handleResponse)
 }

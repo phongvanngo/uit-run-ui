@@ -10,7 +10,7 @@ function login(userCode) {
     body: JSON.stringify({ userCode }),
   }
 
-  return fetch(`https://uitrun-test.herokuapp.com/api/v1/auth/login`, requestOptions)
+  return fetch(`${process.env.REACT_APP_API_URL}/auth/login`, requestOptions)
     .then(handleResponse)
     .then((user) => {
       // store user details and jwt token in local storage to keep user logged in between page refreshes

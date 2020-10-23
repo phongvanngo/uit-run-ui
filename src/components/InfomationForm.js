@@ -36,6 +36,17 @@ const InfomationForm = () => {
         setError(false)
         userService
           .updateUserInfo(fullName, stdId, numberPhone)
+          .then((newInfo)=>{
+            const user = JSON.parse(localStorage.getItem('user'))
+            user.user = {
+              ...user.user,
+              stdId: newInfo.stdId,
+              fullName: newInfo.fullName,
+              numberPhone: newInfo.numberPhone
+            }
+          
+            localStorage.setItem('user', JSON.stringify(user))
+          })
           .then(() => history.push('/'))
           .catch(() => {
             setError(true)
