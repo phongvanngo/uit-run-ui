@@ -6,7 +6,6 @@ import Question from './Question'
 import { useCountdown } from '../hooks/useCountdown'
 import ModalInstruction from './ModalInstruction'
 import { secondToMinutesAndSeconds } from '../utils'
-import { Prompt } from 'react-router-dom'
 
 const TOTAL_QUESTIONS = 20
 
@@ -18,11 +17,11 @@ function Quiz() {
   const [score, setScore] = useState(0)
   const [gameOver, setGameOver] = useState(true)
   const [showResult, setShowResult] = useState(false)
-  const { time, timePassed } = useCountdown(gameOver, setGameOver)
+  const [shouldGetScore, setShouldGetScore] = useState(false)
+  const { time, timePassed } = useCountdown(gameOver, setGameOver,setShouldGetScore)
   const [showInstruction, setShowInstruction] = useState(false)
   const [userAnswers, setUserAnswers] = useState([])
   const [showButtons, setShowButtons] = useState(true)
-  const [shouldGetScore, setShouldGetScore] = useState(false)
 
   useEffect(() => {
     const getScore = async () => {
@@ -88,10 +87,6 @@ function Quiz() {
   return (
     
     <Container className="d-flex flex-column align-items-center">
-      <Prompt
-      when={!gameOver}
-      message={location => `Vui lòng hoàn thành phần thi trước khi rời trang. Bạn có muốn tiếp tục rời trang?(Cancel để ở lại)`}
-      />
       <h1>Thi Đấu</h1>
       {loading && (
         <Spinner animation="border" role="status">
