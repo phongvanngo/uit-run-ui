@@ -15,7 +15,6 @@ const RankingBoard = () => {
 
     // Gọi fake API
     rankingService.getBoard().then((fetchedUsers) => {
-      console.log(fetchedUsers)
       const users = fetchedUsers
         .sort(compareUser)
         .map((user, rank) => ({ ...user, rank })) // Sắp xếp và thêm thuộc tính rank
