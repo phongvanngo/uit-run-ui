@@ -18,7 +18,7 @@ const Question = ({ question, checkAnswer, answers, questionNumber }) => {
 
         <Card.Body className="px-3 py-4">
           <Card.Title className="mb-4">
-            <h3>{question.question}</h3>
+            <h3>{question.content}</h3>
           </Card.Title>
           {question && question.description && <div className="d-flex align-items-center mb-3 flex-column">
             <ReactPlayer
