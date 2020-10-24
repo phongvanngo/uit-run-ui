@@ -36,10 +36,11 @@ const Question = ({ question, checkAnswer, answers, questionNumber }) => {
             </Button>
           </div>}
 
-          {question && question.image && <div className="d-flex align-items-center mb-3">
+          {question && question.image && <div className="d-flex align-items-center justify-content-center mb-3">
             <Image
               src={question.image}
-              className="rounded"
+              className="rounded mw-100"
+              style={{maxHeight: '500px'}}
             ></Image>
           </div>}
 

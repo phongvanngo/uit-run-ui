@@ -12,6 +12,7 @@ const InfomationForm = () => {
   const history = useHistory()
   const [submitted, setSubmitted] = useState(false)
   const [stdIdLenError, setStdIdLenError] = useState(false)
+  const [nameLenError, setNameLenError] = useState(false)
   const [formIsNotFilled, setformIsNotFilled] = useState(true)
 
   useEffect(() => {
@@ -26,10 +27,15 @@ const InfomationForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     setSubmitted(true)
+    setStdIdLenError(false)
+    setNameLenError(false)
 
     if (fullName && stdId) {
       if (stdId.length !== 8) {
         setStdIdLenError(true)
+      }
+      else if (fullName.length < 6) {
+        setNameLenError(true)
       }
       else {
         setLoading(true)
@@ -85,7 +91,7 @@ const InfomationForm = () => {
                 <small className="text-danger">Cần nhập MSSV</small>
               )}
               {submitted && stdIdLenError && (
-                <small className="text-danger">MSSV có độ dài không hợp lệ</small>
+                <small className="text-danger">MSSV phải có 8 ký tự</small>
               )}
             </Form.Group>
 
@@ -100,6 +106,9 @@ const InfomationForm = () => {
               />
               {submitted && !fullName && (
                 <small className="text-danger">Cần nhập họ và tên</small>
+              )}
+              {submitted && nameLenError && (
+                <small className="text-danger">Tên phải có ít nhất 6 ký tự</small>
               )}
             </Form.Group>
             <Form.Group controlId="formName">

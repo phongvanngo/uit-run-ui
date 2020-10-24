@@ -19,7 +19,7 @@ function Quiz() {
   const [gameOver, setGameOver] = useState(true)
   const [showResult, setShowResult] = useState(false)
   const [shouldGetScore, setShouldGetScore] = useState(false)
-  const { time, timePassed } = useCountdown(gameOver, setGameOver,setShouldGetScore)
+  const { time, timePassed } = useCountdown(gameOver, setGameOver, loading, setShouldGetScore)
   const [showInstruction, setShowInstruction] = useState(false)
   const [userAnswers, setUserAnswers] = useState([])
   const [showButtons, setShowButtons] = useState(true)
