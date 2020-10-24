@@ -13,17 +13,17 @@ const Question = ({ question, checkAnswer, answers, questionNumber }) => {
     <>
       <Card className="w-100 mb-4 border-custom-lg">
         <Card.Header className="bg-dark-custom text-white">
-          Câu hỏi {questionNumber + 1} trên 25
+          Câu hỏi {questionNumber + 1} trên 20
         </Card.Header>
 
         <Card.Body className="px-3 py-4">
           <Card.Title className="mb-4">
             <h3>{question.question}</h3>
           </Card.Title>
-          <div className="d-flex align-items-center mb-3 flex-column">
+          {question && question.description && <div className="d-flex align-items-center mb-3 flex-column">
             <ReactPlayer
               style={{ pointerEvents: 'none' }}
-              url="https://www.youtube.com/watch?v=Zzn9-ATB9aU"
+              url={question.description}
               playing={playing}
             />
 
@@ -34,19 +34,20 @@ const Question = ({ question, checkAnswer, answers, questionNumber }) => {
             >
               Play video
             </Button>
-          </div>
+          </div>}
 
-          {/* <div className="d-flex align-items-center mb-3">
+          {question && question.image && <div className="d-flex align-items-center justify-content-center mb-3">
             <Image
-              src="https://picsum.photos/300/200"
-              className="rounded"
+              src={question.image}
+              className="rounded mw-100"
+              style={{maxHeight: '500px'}}
             ></Image>
-          </div> */}
+          </div>}
 
           <div className="pt-3 ">
-            {answers.map((answer) => (
+            {answers.map((answer,i) => (
               <div
-                key={answer}
+                key={answer + i}
                 className="mb-2 "
                 onClick={() => setUserAnswer(answer)}
               >

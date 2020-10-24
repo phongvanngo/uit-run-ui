@@ -1,14 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Jumbotron from 'react-bootstrap/Jumbotron'
 
 import { Link } from 'react-router-dom'
 
 const Home = () => {
+  const [user, setUser] = useState(() => {
+    let userData = JSON.parse(localStorage.getItem('user'))
+    if (userData && userData.user) {
+      return userData.user.fullName
+    } else {
+      return null
+    }
+  })
   return (
     <Jumbotron className="rounded bg-dark-custom text-white text-center">
-      <h1 className="font-italic">UIT Run</h1>
+      <h1>Chào mừng {user ? user : 'bạn'} đến với UIT RUN</h1>
       <p className="lead">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      Bạn đã sẵn sàng đến với bài kiểm tra trí tuệ chưa?
       </p>
       <div>
         <Link className="btn btn-custom custom-transition mr-2" to="/quiz">
@@ -16,7 +24,7 @@ const Home = () => {
         </Link>
         <a
           className="btn btn-custom custom-transition"
-          href="https://google.com"
+          href="https://www.facebook.com/chayngaydi.uitrun"
         >
           Tìm hiểu thêm
         </a>

@@ -37,6 +37,14 @@ const RankingBoard = () => {
           </Spinner>
         </div>
       )}
+      {
+        !loading && users.length === 0 && (
+          <div className="d-flex justify-content-center">
+            <h3>Hiện tại chưa có ai làm bài thi</h3>
+          </div>
+          
+        )
+      }
       {users.length > 0 && (
         <>
           <div className="d-flex justify-content-center">
@@ -59,14 +67,14 @@ const RankingBoard = () => {
           <Table bordered hover className="text-center">
             <thead className="bg-gradient-custom text-white">
               <tr>
-                <th>#</th>
+                <th>Hạng</th>
                 <th>MSSV</th>
                 <th>Điểm</th>
                 <th>Thời gian</th>
               </tr>
             </thead>
             <tbody>
-              {users
+              {users && users
                 .filter((user) => {
                   if (searchQuery.length < 8 && searchQuery.length > 0) {
                     return user.std_id.includes(searchQuery)
@@ -74,7 +82,7 @@ const RankingBoard = () => {
                   return true
                 })
                 .map((user) => (
-                  <tr key={user.std_id}>
+                  <tr key={user.std_id+user.rank}>
                     <td className="w-auto font-weight-bold font-italic">
                       <span
                         className={

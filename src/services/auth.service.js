@@ -10,7 +10,7 @@ function login(userCode) {
     body: JSON.stringify({ userCode }),
   }
 
-  return fetch(`http://localhost:3000/api/v1/auth/login`, requestOptions)
+  return fetch(`${process.env.REACT_APP_API_URL}/auth/login`, requestOptions)
     .then(handleResponse)
     .then((user) => {
       // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -27,18 +27,18 @@ function logout() {
 
 export function handleResponse(response) {
   return response.text().then((text) => {
-    const data = text && JSON.parse(text)
     if (!response.ok) {
       if (response.status === 401) {
-        // auto logout if 401 response returned from api
+        // auto logout if 401
         logout()
-        window.location.reload(true)
+        window.location.reload()
       }
-
-      const error = (data && data.message) || response.statusText
+      
+      const error = response.statusText
       return Promise.reject(error)
     }
-
+    
+    const data = text && JSON.parse(text)
     return data
   })
 }

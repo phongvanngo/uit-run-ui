@@ -1,35 +1,73 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Container, Form, Button, Card, Spinner } from 'react-bootstrap'
 import { userService } from '../services/user.service'
-import { useHistory } from 'react-router-dom'
+import { Prompt, useHistory } from 'react-router-dom'
 
 const InfomationForm = () => {
+  const [numberPhone, setNumberPhone] = useState('')
   const [stdId, setStdId] = useState('')
   const [fullName, setFullName] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
   const history = useHistory()
   const [submitted, setSubmitted] = useState(false)
+  const [stdIdLenError, setStdIdLenError] = useState(false)
+  const [nameLenError, setNameLenError] = useState(false)
+  const [formIsNotFilled, setformIsNotFilled] = useState(true)
+
+  useEffect(() => {
+    if (stdId && fullName && numberPhone) {
+      setformIsNotFilled(false)
+    }
+    else {
+      setformIsNotFilled(true)
+    }
+  },[stdId, fullName, numberPhone])
 
   const handleSubmit = (e) => {
     e.preventDefault()
     setSubmitted(true)
+    setStdIdLenError(false)
+    setNameLenError(false)
 
     if (fullName && stdId) {
-      setLoading(true)
-      setError(false)
-      userService
-        .updateUserInfo(fullName, stdId)
-        .then(() => history.push('/'))
-        .catch(() => {
-          setError(true)
-          setLoading(false)
-        })
+      if (stdId.length !== 8) {
+        setStdIdLenError(true)
+      }
+      else if (fullName.length < 6) {
+        setNameLenError(true)
+      }
+      else {
+        setLoading(true)
+        setError(false)
+        userService
+          .updateUserInfo(fullName, stdId, numberPhone)
+          .then((newInfo)=>{
+            const user = JSON.parse(localStorage.getItem('user'))
+            user.user = {
+              ...user.user,
+              stdId: newInfo.stdId,
+              fullName: newInfo.fullName,
+              numberPhone: newInfo.numberPhone
+            }
+          
+            localStorage.setItem('user', JSON.stringify(user))
+          })
+          .then(() => history.push('/'))
+          .catch(() => {
+            setError(true)
+            setLoading(false)
+          })
+      }
     }
   }
 
   return (
     <Container>
+      <Prompt
+      when={formIsNotFilled}
+      message={`Vui lòng điền đầy đủ thông tin trước khi rời trang. Bạn có muốn tiếp tục rời trang?(Cancel để ở lại)`}
+      />
       {loading && (
         <div className="d-flex justify-content-center mb-3">
           <Spinner animation="border" role="status">
@@ -52,6 +90,9 @@ const InfomationForm = () => {
               {submitted && !stdId && (
                 <small className="text-danger">Cần nhập MSSV</small>
               )}
+              {submitted && stdIdLenError && (
+                <small className="text-danger">MSSV phải có 8 ký tự</small>
+              )}
             </Form.Group>
 
             <Form.Group controlId="formName">
@@ -65,6 +106,22 @@ const InfomationForm = () => {
               />
               {submitted && !fullName && (
                 <small className="text-danger">Cần nhập họ và tên</small>
+              )}
+              {submitted && nameLenError && (
+                <small className="text-danger">Tên phải có ít nhất 6 ký tự</small>
+              )}
+            </Form.Group>
+            <Form.Group controlId="formName">
+              <Form.Label>Số điện thoại</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Nhập số điện thoại"
+                className="border-custom-lg"
+                value={numberPhone}
+                onChange={(e) => setNumberPhone(e.target.value)}
+              />
+              {submitted && !numberPhone && (
+                <small className="text-danger">Cần nhập số điện thoại</small>
               )}
             </Form.Group>
 

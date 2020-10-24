@@ -12,7 +12,7 @@ function getExam() {
     headers: authHeader(),
   }
 
-  return fetch('http://localhost:3000/api/v1/question/exam', requestOptions)
+  return fetch(`${process.env.REACT_APP_API_URL}/question/exam`, requestOptions)
     .then(handleResponse)
     .then((questions) =>
       questions.map((question) => {
@@ -37,7 +37,7 @@ function postExam(userAnswers, time) {
   }
 
   return fetch(
-    `http://localhost:3000/api/v1/question/exam`,
+    `${process.env.REACT_APP_API_URL}/question/exam`,
     requestOptions
   ).then(handleResponse)
 }

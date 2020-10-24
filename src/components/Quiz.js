@@ -6,8 +6,9 @@ import Question from './Question'
 import { useCountdown } from '../hooks/useCountdown'
 import ModalInstruction from './ModalInstruction'
 import { secondToMinutesAndSeconds } from '../utils'
+import { Prompt } from 'react-router-dom'
 
-const TOTAL_QUESTIONS = 25
+const TOTAL_QUESTIONS = 20
 
 function Quiz() {
   const [loading, setLoading] = useState(false)
@@ -17,11 +18,11 @@ function Quiz() {
   const [score, setScore] = useState(0)
   const [gameOver, setGameOver] = useState(true)
   const [showResult, setShowResult] = useState(false)
-  const { time, timePassed } = useCountdown(gameOver, setGameOver)
+  const [shouldGetScore, setShouldGetScore] = useState(false)
+  const { time, timePassed } = useCountdown(gameOver, setGameOver, loading, setShouldGetScore)
   const [showInstruction, setShowInstruction] = useState(false)
   const [userAnswers, setUserAnswers] = useState([])
   const [showButtons, setShowButtons] = useState(true)
-  const [shouldGetScore, setShouldGetScore] = useState(false)
 
   useEffect(() => {
     const getScore = async () => {
@@ -85,8 +86,15 @@ function Quiz() {
   }
 
   return (
+    
     <Container className="d-flex flex-column align-items-center">
-      <h1>Quiz Demo</h1>
+      <Prompt 
+        when={!gameOver}
+        message={(location)=> {
+          if (!gameOver) return false
+        }}
+      />
+      <h1>Thi Đấu</h1>
       {loading && (
         <Spinner animation="border" role="status">
           <span className="sr-only">Đang tải...</span>
