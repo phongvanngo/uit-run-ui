@@ -8,10 +8,12 @@ import { rankingService } from '../services/ranking.service'
 const RankingBoard = () => {
   const [searchQuery, setSearchQuery] = useState('') // Filter data hiển thị trên table dựa trên MSSV
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
   const [users, setUsers] = useState([])
 
   useEffect(() => {
     setLoading(true)
+    setError(false)
 
     // Gọi fake API
     rankingService.getBoard().then((fetchedUsers) => {
@@ -20,6 +22,10 @@ const RankingBoard = () => {
         .map((user, rank) => ({ ...user, rank })) // Sắp xếp và thêm thuộc tính rank
       setUsers(users)
       setLoading(false)
+      setError(false)
+    }).catch((err) => {
+      setLoading(false)
+      setError(true)
     })
   }, [])
 
@@ -37,8 +43,15 @@ const RankingBoard = () => {
           </Spinner>
         </div>
       )}
+      {error && (
+        <div className="d-flex justify-content-center">
+          <h3 className="text-danger">
+            Có lỗi, xin hãy thử tải lại trang
+          </h3>
+        </div>
+      )}
       {
-        !loading && users.length === 0 && (
+        !error && !loading && users.length === 0 && (
           <div className="d-flex justify-content-center">
             <h3>Hiện tại chưa có ai làm bài thi</h3>
           </div>
