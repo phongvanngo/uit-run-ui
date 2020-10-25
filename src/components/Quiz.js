@@ -23,6 +23,7 @@ function Quiz() {
   const [showInstruction, setShowInstruction] = useState(false)
   const [userAnswers, setUserAnswers] = useState([])
   const [showButtons, setShowButtons] = useState(true)
+  const [playingVideo, setPlayingVideo] = useState(false)
 
   useEffect(() => {
     const getScore = async () => {
@@ -68,6 +69,7 @@ function Quiz() {
 
   const nextQuestion = () => {
     setNumber(number + 1)
+    setPlayingVideo(false)
   }
 
   const checkAnswer = async (answer) => {
@@ -133,6 +135,8 @@ function Quiz() {
             question={questions[number]}
             answers={questions[number].answers}
             checkAnswer={checkAnswer}
+            playingVideo={playingVideo}
+            setPlayingVideo={setPlayingVideo}
           />
         </>
       )}
