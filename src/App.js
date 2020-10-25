@@ -13,6 +13,7 @@ import Home from './components/Home'
 import { Container } from 'react-bootstrap'
 import InfomationForm from './components/InfomationForm'
 import { PrivateRoute } from './components/PrivateRoute'
+import Footer from './components/Footer'
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
             <Redirect from="*" to="/" />
           </Switch>
         </Container>
+        <Footer />
       </Router>
     </>
   )
