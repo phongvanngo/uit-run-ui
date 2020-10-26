@@ -5,10 +5,9 @@ import Card from 'react-bootstrap/Card'
 import Image from 'react-bootstrap/Image'
 import ReactPlayer from 'react-player'
 
-const Question = ({ question, checkAnswer, answers, questionNumber }) => {
+const Question = ({ question, checkAnswer, answers, questionNumber,playingVideo,setPlayingVideo }) => {
   const [userAnswer, setUserAnswer] = useState('')
-  const [playing, setPlaying] = useState(false)
-
+  
   return (
     <>
       <Card className="w-100 mb-4 border-custom-lg">
@@ -24,12 +23,13 @@ const Question = ({ question, checkAnswer, answers, questionNumber }) => {
             <ReactPlayer
               style={{ pointerEvents: 'none' }}
               url={question.description}
-              playing={playing}
+              playing={playingVideo}
+              key={questionNumber}
             />
 
             <Button
               variant="custom"
-              onClick={() => setPlaying(true)}
+              onClick={() => setPlayingVideo(true)}
               className="mt-2"
             >
               Play video
