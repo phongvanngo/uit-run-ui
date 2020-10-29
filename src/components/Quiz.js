@@ -8,7 +8,7 @@ import ModalInstruction from './ModalInstruction'
 import { secondToMinutesAndSeconds } from '../utils'
 import { Prompt } from 'react-router-dom'
 
-const TOTAL_QUESTIONS = 20
+const TOTAL_QUESTIONS = 25
 
 function Quiz() {
   const [loading, setLoading] = useState(false)
@@ -142,7 +142,7 @@ function Quiz() {
       )}
       {showResult && (
         <>
-          <h3>Tổng điểm: {score}</h3>
+          <h3>Tổng điểm: {score*20}</h3>
           <h3>Thời gian: {secondToMinutesAndSeconds(timePassed)}</h3>
         </>
       )}

@@ -11,7 +11,7 @@ const InfomationForm = () => {
   const [error, setError] = useState(false)
   const history = useHistory()
   const [submitted, setSubmitted] = useState(false)
-  const [stdIdLenError, setStdIdLenError] = useState(false)
+  const [phoneLenError, setPhoneLenError] = useState(false)
   const [nameLenError, setNameLenError] = useState(false)
   const [formIsNotFilled, setformIsNotFilled] = useState(true)
 
@@ -27,12 +27,12 @@ const InfomationForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     setSubmitted(true)
-    setStdIdLenError(false)
+    setPhoneLenError(false)
     setNameLenError(false)
 
     if (fullName && stdId) {
-      if (stdId.length !== 8) {
-        setStdIdLenError(true)
+      if (numberPhone.length !== 10) {
+        setPhoneLenError(true)
       }
       else if (fullName.length < 6) {
         setNameLenError(true)
@@ -87,12 +87,6 @@ const InfomationForm = () => {
                 placeholder="Nhập MSSV"
                 className="border-custom-lg"
               />
-              {submitted && !stdId && (
-                <small className="text-danger">Cần nhập MSSV</small>
-              )}
-              {submitted && stdIdLenError && (
-                <small className="text-danger">MSSV phải có 8 ký tự</small>
-              )}
             </Form.Group>
 
             <Form.Group controlId="formName">
@@ -121,7 +115,10 @@ const InfomationForm = () => {
                 onChange={(e) => setNumberPhone(e.target.value)}
               />
               {submitted && !numberPhone && (
-                <small className="text-danger">Cần nhập số điện thoại</small>
+                <small className="text-danger">Cần nhập SĐT</small>
+              )}
+              {submitted && phoneLenError && (
+                <small className="text-danger">SĐT phải có 10 số</small>
               )}
             </Form.Group>
 

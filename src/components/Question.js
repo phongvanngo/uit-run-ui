@@ -12,7 +12,7 @@ const Question = ({ question, checkAnswer, answers, questionNumber,playingVideo,
     <>
       <Card className="w-100 mb-4 border-custom-lg">
         <Card.Header className="bg-dark-custom text-white">
-          Câu hỏi {questionNumber + 1} trên 20
+          Câu hỏi {questionNumber + 1} trên 25
         </Card.Header>
 
         <Card.Body className="px-3 py-4">
