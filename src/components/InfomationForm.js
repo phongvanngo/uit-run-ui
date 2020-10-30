@@ -1,72 +1,69 @@
-import React, { useEffect, useState } from 'react'
-import { Container, Form, Button, Card, Spinner } from 'react-bootstrap'
-import { userService } from '../services/user.service'
-import { Prompt, useHistory } from 'react-router-dom'
+import React, { useEffect, useState } from "react";
+import { Container, Form, Button, Card, Spinner, Col } from "react-bootstrap";
+import { userService } from "../services/user.service";
+import { Prompt, useHistory } from "react-router-dom";
 
 const InfomationForm = () => {
-  const [numberPhone, setNumberPhone] = useState('')
-  const [stdId, setStdId] = useState('')
-  const [fullName, setFullName] = useState('')
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(false)
-  const history = useHistory()
-  const [submitted, setSubmitted] = useState(false)
-  const [phoneLenError, setPhoneLenError] = useState(false)
-  const [nameLenError, setNameLenError] = useState(false)
-  const [formIsNotFilled, setformIsNotFilled] = useState(true)
+  const [numberPhone, setNumberPhone] = useState("");
+  const [stdId, setStdId] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const history = useHistory();
+  const [submitted, setSubmitted] = useState(false);
+  const [phoneLenError, setPhoneLenError] = useState(false);
+  const [nameLenError, setNameLenError] = useState(false);
+  const [formIsNotFilled, setformIsNotFilled] = useState(true);
 
   useEffect(() => {
     if (stdId && fullName && numberPhone) {
-      setformIsNotFilled(false)
+      setformIsNotFilled(false);
+    } else {
+      setformIsNotFilled(true);
     }
-    else {
-      setformIsNotFilled(true)
-    }
-  },[stdId, fullName, numberPhone])
+  }, [stdId, fullName, numberPhone]);
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    setSubmitted(true)
-    setPhoneLenError(false)
-    setNameLenError(false)
+    e.preventDefault();
+    setSubmitted(true);
+    setPhoneLenError(false);
+    setNameLenError(false);
 
     if (fullName && stdId) {
       if (numberPhone.length !== 10) {
-        setPhoneLenError(true)
-      }
-      else if (fullName.length < 6) {
-        setNameLenError(true)
-      }
-      else {
-        setLoading(true)
-        setError(false)
+        setPhoneLenError(true);
+      } else if (fullName.length < 6) {
+        setNameLenError(true);
+      } else {
+        setLoading(true);
+        setError(false);
         userService
           .updateUserInfo(fullName, stdId, numberPhone)
-          .then((newInfo)=>{
-            const user = JSON.parse(localStorage.getItem('user'))
+          .then((newInfo) => {
+            const user = JSON.parse(localStorage.getItem("user"));
             user.user = {
               ...user.user,
               stdId: newInfo.stdId,
               fullName: newInfo.fullName,
-              numberPhone: newInfo.numberPhone
-            }
-          
-            localStorage.setItem('user', JSON.stringify(user))
+              numberPhone: newInfo.numberPhone,
+            };
+
+            localStorage.setItem("user", JSON.stringify(user));
           })
-          .then(() => history.push('/'))
+          .then(() => history.push("/"))
           .catch(() => {
-            setError(true)
-            setLoading(false)
-          })
+            setError(true);
+            setLoading(false);
+          });
       }
     }
-  }
+  };
 
   return (
     <Container>
       <Prompt
-      when={formIsNotFilled}
-      message={`Vui lòng điền đầy đủ thông tin trước khi rời trang. Bạn có muốn tiếp tục rời trang?(Cancel để ở lại)`}
+        when={formIsNotFilled}
+        message={`Vui lòng điền đầy đủ thông tin trước khi rời trang. Bạn có muốn tiếp tục rời trang?(Cancel để ở lại)`}
       />
       {loading && (
         <div className="d-flex justify-content-center mb-3">
@@ -76,61 +73,67 @@ const InfomationForm = () => {
         </div>
       )}
       <div className=" d-flex justify-content-center">
-        <Card className="w-75 px-4 py-3 border-custom-lg">
-          <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="formMSSV">
-              <Form.Label>MSSV</Form.Label>
-              <Form.Control
-                type="text"
-                value={stdId}
-                onChange={(e) => setStdId(e.target.value)}
-                placeholder="Nhập MSSV"
-                className="border-custom-lg"
-              />
-            </Form.Group>
+        <Col xs={12} lg={6} xl={6}>
+          <Card className="w-100 px-4 py-3 border-custom-lg">
+            <Form onSubmit={handleSubmit}>
+              <Form.Group controlId="formMSSV">
+                <Form.Label>MSSV</Form.Label>
+                <Form.Control
+                  type="text"
+                  value={stdId}
+                  onChange={(e) => setStdId(e.target.value)}
+                  placeholder="Nhập MSSV"
+                  className="border-custom-lg"
+                />
+              </Form.Group>
 
-            <Form.Group controlId="formName">
-              <Form.Label>Họ và tên</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Nhập họ và tên"
-                className="border-custom-lg"
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
-              />
-              {submitted && !fullName && (
-                <small className="text-danger">Cần nhập họ và tên</small>
-              )}
-              {submitted && nameLenError && (
-                <small className="text-danger">Tên phải có ít nhất 6 ký tự</small>
-              )}
-            </Form.Group>
-            <Form.Group controlId="formName">
-              <Form.Label>Số điện thoại</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Nhập số điện thoại"
-                className="border-custom-lg"
-                value={numberPhone}
-                onChange={(e) => setNumberPhone(e.target.value)}
-              />
-              {submitted && !numberPhone && (
-                <small className="text-danger">Cần nhập SĐT</small>
-              )}
-              {submitted && phoneLenError && (
-                <small className="text-danger">SĐT phải có 10 số</small>
-              )}
-            </Form.Group>
+              <Form.Group controlId="formName">
+                <Form.Label>Họ và tên</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Nhập họ và tên"
+                  className="border-custom-lg"
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                />
+                {submitted && !fullName && (
+                  <small className="text-danger">Cần nhập họ và tên</small>
+                )}
+                {submitted && nameLenError && (
+                  <small className="text-danger">
+                    Tên phải có ít nhất 6 ký tự
+                  </small>
+                )}
+              </Form.Group>
+              <Form.Group controlId="formName">
+                <Form.Label>Số điện thoại</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Nhập số điện thoại"
+                  className="border-custom-lg"
+                  value={numberPhone}
+                  onChange={(e) => setNumberPhone(e.target.value)}
+                />
+                {submitted && !numberPhone && (
+                  <small className="text-danger">Cần nhập SĐT</small>
+                )}
+                {submitted && phoneLenError && (
+                  <small className="text-danger">SĐT phải có 10 số</small>
+                )}
+              </Form.Group>
 
-            <Button variant="outline-custom" type="submit">
-              Xác nhận
-            </Button>
-            {error && <small className="text-danger">Có lỗi xin thử lại</small>}
-          </Form>
-        </Card>
+              <Button variant="outline-custom" type="submit" className="w-100">
+                Xác nhận
+              </Button>
+              {error && (
+                <small className="text-danger">Có lỗi xin thử lại</small>
+              )}
+            </Form>
+          </Card>
+        </Col>
       </div>
     </Container>
-  )
-}
+  );
+};
 
-export default InfomationForm
+export default InfomationForm;

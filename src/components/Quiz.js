@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Container, Button } from 'react-bootstrap'
+import { Container, Button, Col } from 'react-bootstrap'
 import { quizService } from '../services/quiz.service'
 import Spinner from 'react-bootstrap/Spinner'
 import Question from './Question'
@@ -89,7 +89,7 @@ function Quiz() {
 
   return (
     
-    <Container className="d-flex flex-column align-items-center">
+    <Container className="d-flex flex-column align-items-center container">
       <Prompt 
         when={!gameOver}
         message={(location)=> {
@@ -104,15 +104,16 @@ function Quiz() {
       )}
       {error && (
         <h3 className="text-danger">
-          Có lỗi, xin hãy tải lại trang hoặc liên hệ với admin, hoặc nếu bạn đã
+          Có lỗi, xin hãy tải lại trang hoặc liên hệ với BTC qua đường link fanpage <a className="text-danger" href="https://www.facebook.com/uitrun/">tại đây</a> , hoặc nếu bạn đã
           thi rồi thì không thể thi nữa
         </h3>
       )}
       {showButtons && (
         <>
-          <Button
+        <Col xs={12} lg={4} xl={4}>
+        <Button
             variant="outline-custom"
-            className="mt-4 d-block w-75 custom-transition"
+            className="mt-4 d-block w-100 custom-transition"
             onClick={startQuiz}
           >
             Bắt Đầu
@@ -120,10 +121,11 @@ function Quiz() {
           <Button
             onClick={handleShow}
             variant="outline-custom"
-            className="mt-4 d-block w-75 custom-transition"
+            className="mt-4 d-block w-100 custom-transition"
           >
             Hướng dẫn
           </Button>
+        </Col>
         </>
       )}
 
