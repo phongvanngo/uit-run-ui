@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-const TOTAL_TIME = 20*60
+const TOTAL_TIME = 15*60
 
 export function useCountdown(gameOver, setGameOver,loading, setShouldGetScore) {
   const [time, setTime] = useState(TOTAL_TIME)

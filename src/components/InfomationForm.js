@@ -76,7 +76,7 @@ const InfomationForm = () => {
         </div>
       )}
       <div className=" d-flex justify-content-center">
-        <Card className="w-50 px-4 py-3 border-custom-lg">
+        <Card className="w-75 px-4 py-3 border-custom-lg">
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formMSSV">
               <Form.Label>MSSV</Form.Label>
@@ -122,7 +122,7 @@ const InfomationForm = () => {
               )}
             </Form.Group>
 
-            <Button variant="outline-custom" type="submit" className="w-100">
+            <Button variant="outline-custom" type="submit">
               Xác nhận
             </Button>
             {error && <small className="text-danger">Có lỗi xin thử lại</small>}

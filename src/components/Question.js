@@ -21,7 +21,7 @@ const Question = ({ question, checkAnswer, answers, questionNumber,playingVideo,
           </Card.Title>
           {question && question.description && <div className="d-flex align-items-center mb-3 flex-column">
             <ReactPlayer
-              style={{ pointerEvents: 'none' }}
+              style={{ pointerEvents: 'none', maxWidth: '100%' }}
               url={question.description}
               playing={playingVideo}
               key={questionNumber}

@@ -112,7 +112,7 @@ function Quiz() {
         <>
           <Button
             variant="outline-custom"
-            className="mt-4 d-block w-25 custom-transition"
+            className="mt-4 d-block w-75 custom-transition"
             onClick={startQuiz}
           >
             Bắt Đầu
@@ -120,7 +120,7 @@ function Quiz() {
           <Button
             onClick={handleShow}
             variant="outline-custom"
-            className="mt-4 d-block w-25 custom-transition"
+            className="mt-4 d-block w-75 custom-transition"
           >
             Hướng dẫn
           </Button>

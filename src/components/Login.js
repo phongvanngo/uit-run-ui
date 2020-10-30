@@ -42,7 +42,7 @@ const Login = () => {
   return (
     <Container>
       <div className=" d-flex justify-content-center">
-        <Card className="w-50 px-4 py-3 border-custom-lg">
+        <Card className="w-75 px-4 py-3 border-custom-lg">
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formCode">
               <Form.Label>Code</Form.Label>
@@ -67,7 +67,7 @@ const Login = () => {
             <Button
               type="submit"
               variant="outline-custom"
-              className="custom-transition w-100"
+              className="custom-transition"
             >
               {loggingIn && (
                 <Spinner
