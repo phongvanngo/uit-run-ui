@@ -1,13 +1,14 @@
-import React from 'react'
-import Nav from 'react-bootstrap/Nav'
-import Navbar from 'react-bootstrap/Navbar'
-import { NavLink, Link } from 'react-router-dom'
-import uitRunLogo from '../images/uit-run-logo.png'
+import React from "react";
+import Nav from "react-bootstrap/Nav";
+import { Col } from "react-bootstrap";
+import Navbar from "react-bootstrap/Navbar";
+import { NavLink, Link } from "react-router-dom";
+import uitRunLogo from "../images/uit-run-logo.png";
 
-import { useSelector } from 'react-redux'
+import { useSelector } from "react-redux";
 
 const AppNav = () => {
-  const user = useSelector((state) => state.authentication.user)
+  const user = useSelector((state) => state.authentication.user);
 
   return (
     <Navbar
@@ -25,30 +26,49 @@ const AppNav = () => {
 
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className="mr-auto">
-          <NavLink activeClassName="active" className="nav-link" to="/ranking">
-            Xếp hạng
-          </NavLink>
-          {user && (
-            <NavLink activeClassName="active" className="nav-link" to="/quiz">
-              Thi Đấu
-            </NavLink>
-          )}
-        </Nav>
-        <Nav>
-          {user ? (
-            <Link className="btn btn-custom custom-transition" to="/login">
-              Đăng Xuất
-            </Link>
-          ) : (
-            <NavLink activeClassName="active" className="nav-link" to="/login">
-              Đăng nhập
-            </NavLink>
-          )}
-        </Nav>
+              <Nav className="mr-auto">
+                <NavLink
+                  activeClassName="active"
+                  className="nav-link"
+                  to="/ranking"
+                >
+                  Xếp hạng
+                </NavLink>
+                {user && (
+                  <NavLink
+                    activeClassName="active"
+                    className="nav-link"
+                    to="/quiz"
+                  >
+                    Thi Đấu
+                  </NavLink>
+                )}
+              </Nav>
+              <Nav>
+              <div>
+                <Col xs={6} lg={12} xl={12}>
+                {user ? (
+                  <Link
+                    className="btn btn-custom custom-transition"
+                    to="/login"
+                  >
+                    Đăng Xuất
+                  </Link>
+                ) : (
+                  <NavLink
+                    activeClassName="active"
+                    className="nav-link"
+                    to="/login"
+                  >
+                    Đăng nhập
+                  </NavLink>
+                )}
+                </Col>
+              </div>
+              </Nav>
       </Navbar.Collapse>
     </Navbar>
-  )
-}
+  );
+};
 
-export default AppNav
+export default AppNav;

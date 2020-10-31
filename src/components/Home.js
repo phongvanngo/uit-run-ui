@@ -24,8 +24,7 @@ const Home = () => {
         </Link>
         <a
           className="btn btn-custom custom-transition"
-          href="https://www.facebook.com/chayngaydi.uitrun"
-        >
+          href="https://www.facebook.com/uitrun/">
           Tìm hiểu thêm
         </a>
       </div>

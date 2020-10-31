@@ -89,7 +89,7 @@ const RankingBoard = () => {
             <tbody>
               {users && users
                 .filter((user) => {
-                  if (searchQuery.length < 8 && searchQuery.length > 0) {
+                  if (searchQuery.length < 20 && searchQuery.length > 0) {
                     return user.std_id.includes(searchQuery)
                   }
                   return true
@@ -109,7 +109,7 @@ const RankingBoard = () => {
                       </span>
                     </td>
                     <td>{user.std_id}</td>
-                    <td>{user.score}</td>
+                    <td>{user.score*20}</td>
                     <td>{secondToMinutesAndSeconds(user.time)}</td>
                   </tr>
                 ))}
