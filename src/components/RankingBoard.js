@@ -83,6 +83,7 @@ const RankingBoard = () => {
                 <th>Hạng</th>
                 <th>MSSV</th>
                 <th>Điểm</th>
+                <th>Tên</th>
                 <th>Thời gian</th>
               </tr>
             </thead>
@@ -110,6 +111,7 @@ const RankingBoard = () => {
                     </td>
                     <td>{user.std_id}</td>
                     <td>{user.score*20}</td>
+                    <td>ABC DEF</td>
                     <td>{secondToMinutesAndSeconds(user.time)}</td>
                   </tr>
                 ))}

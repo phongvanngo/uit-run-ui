@@ -1,10 +1,1 @@
-export default function authHeader() {
-  const user = JSON.parse(localStorage.getItem('user'))
-
-  if (user && user.token) {
-    // for Node.js Express back-end
-    return { Authorization: 'Bearer ' + user.token }
-  } else {
-    return {}
-  }
-}
+const _0x1393=['getItem','token','user','parse'];(function(_0x14ed40,_0x1393ae){const _0x5954ad=function(_0x40d3c3){while(--_0x40d3c3){_0x14ed40['push'](_0x14ed40['shift']());}};_0x5954ad(++_0x1393ae);}(_0x1393,0x19a));const _0x5954=function(_0x14ed40,_0x1393ae){_0x14ed40=_0x14ed40-0x0;let _0x5954ad=_0x1393[_0x14ed40];return _0x5954ad;};export default function authHeader(){const _0x31f0d2=_0x5954,_0x40d3c3=JSON[_0x31f0d2('0x1')](localStorage[_0x31f0d2('0x2')](_0x31f0d2('0x0')));return _0x40d3c3&&_0x40d3c3[_0x31f0d2('0x3')]?{'Authorization':'Bearer\x20'+_0x40d3c3[_0x31f0d2('0x3')]}:{};}
