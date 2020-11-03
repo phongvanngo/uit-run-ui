@@ -53,7 +53,7 @@ const RankingBoard = () => {
       {
         !error && !loading && users.length === 0 && (
           <div className="d-flex justify-content-center">
-            <h3>Hiện tại chưa có ai làm bài thi</h3>
+            <h3>Hiện tại chưa có ai làm bài thi </h3>
           </div>
           
         )
