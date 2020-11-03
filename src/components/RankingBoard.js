@@ -50,10 +50,10 @@ const RankingBoard = () => {
           </h3>
         </div>
       )}
-      {/* {
+      {
         !error && !loading && users.length === 0 && (
           <div className="d-flex justify-content-center">
-            <h3>Hiện tại chưa có ai làm bài thi</h3>
+            <h3>Hiện tại chưa có ai làm bài thi </h3>
           </div>
           
         )
@@ -116,12 +116,12 @@ const RankingBoard = () => {
             </tbody>
           </Table>
         </>
-      )} */}
-      {!error && !loading &&
+      )}
+      {/* {!error && !loading &&
         (<div className="d-flex justify-content-center">
           <h3 className="text-center">Hiện tại bảng xếp hạng đang cập nhật.<br/>Các chiến binh UIT RUN xin vui lòng quay lại sau.</h3>
         </div>)
-      }
+      } */}
     </>
   )
 }
